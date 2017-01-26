@@ -1,0 +1,19 @@
+{
+    "name": "lorenzo/pinky",
+    "description": "A Foundation for Emails (Inky) template transpiler",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jose Lorenzo Rodriguez",
+            "email": "jose.zap@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files": ["src/pinky.php"]
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
+    }
+}
