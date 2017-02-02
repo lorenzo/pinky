@@ -87,26 +87,23 @@ function transformString($xml)
  */
 function loadTemplateFile($filePath)
 {
-    $doc = new DOMDocument();
-    libxml_use_internal_errors(true);
-    $doc->loadHTMLFile($filePath);
-    libxml_use_internal_errors(false);
-    return $doc;
+    return loadTemplateString(file_get_contents($filePath));
 }
 
 /**
  * Returns a DOMDocument after parsing the contents of the spedified string
  *
- * @param string $filePath The string to parse
+ * @param string $html The string to parse
  * @return DOMDocument
  */
-function loadTemplateString($xml)
+function loadTemplateString($html)
 {
-    $doc = new DOMDocument();
-    libxml_use_internal_errors(true);
-    $doc->loadHTML($xml);
-    libxml_use_internal_errors(false);
-    return $doc;
+    $document = new DOMDocument('1.0', 'UTF-8');
+    $internalErrors = libxml_use_internal_errors(true);
+    $document->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
+    libxml_use_internal_errors($internalErrors);
+    $document->formatOutput = true;
+    return $document;
 }
 
 /**
