@@ -1,6 +1,6 @@
 # Pinky
 
-A PHP Transpiler for ([Inky](https://github.com/zurb/inky)), the templating language made for the  ZURB's Foundation for Email framwork.
+A PHP Transpiler for ([Inky](https://github.com/zurb/inky)), the templating language made for the  ZURB's Foundation for Email framework.
 
 ## Installation
 
