@@ -86,7 +86,7 @@
         <table class="{normalize-space(concat(@class, ' spacer ', $showOrHide))}">
             <tbody>
                 <tr>
-                    <td height="{$size}px" style="font-size:{$size}px;line-height:{$size}px;">&#xA0;</td>
+                    <td height="{$size}" style="font-size:{$size}px;line-height:{$size}px;">&#xA0;</td>
                 </tr>
             </tbody>
         </table>
@@ -94,7 +94,7 @@
             <table class="{normalize-space(concat(@class, ' spacer show-for-large'))}">
                 <tbody>
                     <tr>
-                        <td height="{@size-lg}px" style="font-size:{@size-lg}px;line-height:{@size-lg}px;">&#xA0;</td>
+                        <td height="{@size-lg}" style="font-size:{@size-lg}px;line-height:{@size-lg}px;">&#xA0;</td>
                     </tr>
                 </tbody>
             </table>
