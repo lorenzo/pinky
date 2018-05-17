@@ -208,6 +208,7 @@ doc;
     {
         $doc =<<<doc
         <menu class="vertical">
+            <h1>Hey!</h1>
         </menu>
 doc;
         $expected =<<<doc
@@ -216,6 +217,7 @@ doc;
               <td>
                 <table>
                   <tr>
+                    <h1>Hey!</h1>
                   </tr>
                 </table>
               </td>
@@ -426,6 +428,8 @@ doc;
         $expected = new DOMDocument();
         $expected->loadHTML($expectedS);
         $result = transformString($doc);
+        $result->formatOutput = true;
+
         $this->assertXmlStringEqualsXmlString($expected->saveXML(), $result->saveXML());
     }
 }
