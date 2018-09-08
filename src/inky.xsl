@@ -8,7 +8,7 @@
         </xsl:copy>
     </xsl:template>
 
-    <xsl:template match="container">
+    <xsl:template match="//container">
         <table align="center" class="{normalize-space(concat(@class, ' container'))}">
             <xsl:copy-of select="@*[name()!='class']"/>
             <tbody>
@@ -19,7 +19,7 @@
         </table>
     </xsl:template>
 
-    <xsl:template match="row">
+    <xsl:template match="//row">
         <table class="{normalize-space(concat(@class, ' row'))}">
             <xsl:copy-of select="@*[name()!='class']"/>
             <tbody>
@@ -30,7 +30,7 @@
         </table>
     </xsl:template>
 
-    <xsl:template match="columns">
+    <xsl:template match="//columns">
         <xsl:variable name="colCount" select="count(../*)"/>
         <xsl:variable name="first">
             <xsl:if test="position() = 1">first</xsl:if>
@@ -68,7 +68,7 @@
         </th>
     </xsl:template>
 
-    <xsl:template match="spacer">
+    <xsl:template match="//spacer">
         <xsl:variable name="showOrHide">
             <xsl:choose>
                 <xsl:when test="@size-sm">hide-for-large</xsl:when>
@@ -101,27 +101,9 @@
         </xsl:if>
     </xsl:template>
 
-    <xsl:template match="center/*[position() = 1 and not(contains(@class, 'float-center'))]">
-        <xsl:variable name="classes">
-            float-center <xsl:value-of select="@class"/>
-        </xsl:variable>
-        <xsl:copy>
-            <xsl:attribute name="align">center</xsl:attribute>
-            <xsl:attribute name="class"><xsl:value-of select="normalize-space($classes)" /></xsl:attribute>
-            <xsl:apply-templates />
-        </xsl:copy>
-    </xsl:template>
-
-
-    <xsl:template match="center/*/*[contains(@class, 'menu-item')]">
-        <xsl:copy>
-            <xsl:attribute name="class">float-center <xsl:value-of select="@class"/></xsl:attribute>
-            <xsl:apply-templates />
-        </xsl:copy>
-    </xsl:template>
-
-    <xsl:template match="button">
+    <xsl:template match="//button">
         <table class="{normalize-space(concat(@class, ' button'))}">
+            <xsl:copy-of select="@*[name()!='class' and name()!='href' and name()!='target']"/>
             <tr>
                 <td>
                     <table>
@@ -156,7 +138,7 @@
         </table>
     </xsl:template>
 
-    <xsl:template match="menu">
+    <xsl:template match="//menu">
         <table class="{normalize-space(concat(@class, ' menu'))}">
             <xsl:copy-of select="@*[name()!='class']"/>
             <tr>
@@ -171,7 +153,7 @@
         </table>
     </xsl:template>
 
-    <xsl:template match="menu/item">
+    <xsl:template match="//menu/item">
         <th class="{normalize-space(concat(@class, ' menu-item'))}">
             <a>
                 <xsl:copy-of select="@target"/>
@@ -181,7 +163,7 @@
         </th>
     </xsl:template>
 
-    <xsl:template match="callout">
+    <xsl:template match="//callout">
         <table class="">
             <xsl:copy-of select="@*[name()!='class']"/>
             <tr>
@@ -191,7 +173,7 @@
         </table>
     </xsl:template>
 
-    <xsl:template match="callout">
+    <xsl:template match="//callout">
         <table class="{normalize-space(concat(@class, ' callout'))}">
             <xsl:copy-of select="@*[name()!='class']"/>
             <tr>
@@ -201,7 +183,7 @@
         </table>
     </xsl:template>
 
-    <xsl:template match="wrapper">
+    <xsl:template match="//wrapper">
         <table class="{normalize-space(concat(@class, ' wrapper'))}" align="center">
             <xsl:copy-of select="@*[name()!='class']"/>
             <tr>
@@ -210,14 +192,14 @@
         </table>
     </xsl:template>
 
-    <xsl:template match="block-grid">
+    <xsl:template match="//block-grid">
         <table class="{normalize-space(concat(@class, ' block-grid up-', @up))}">
             <xsl:copy-of select="@*[name()!='class' and name()!='up']"/>
             <tr><xsl:apply-templates /></tr>
         </table>
     </xsl:template>
 
-    <xsl:template match="h-line">
+    <xsl:template match="//h-line">
         <table class="{normalize-space(concat(@class, ' h-line'))}">
             <xsl:copy-of select="@*[name()!='class']"/>
             <tr>

@@ -40,6 +40,52 @@ doc;
         $this->assertSameDocuments($doc, $expected);
     }
 
+    public function testCenterWithContainerNested()
+    {
+        $doc =<<<doc
+        <center>
+                <container>
+                    <p>Hello</p>
+                </container>
+        </center>
+doc;
+        $expected =<<<doc
+        <center>
+                <table align="center" class="float-center container">
+                    <tbody>
+                      <tr><td><p>Hello</p></td></tr>
+                    </tbody>
+                </table>
+        </center>
+doc;
+        $this->assertSameDocuments($doc, $expected);
+    }
+
+    public function testCenterWithButtonNested()
+    {
+        $doc =<<<doc
+        <center>
+            <button href="http://zurb.com">Button</button>
+        </center>
+doc;
+        $expected =<<<doc
+        <center>
+            <table align="center" class="float-center button">
+                <tr>
+                  <td>
+                    <table>
+                      <tr>
+                        <td><a href="http://zurb.com">Button</a></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+            </table>
+        </center>
+doc;
+        $this->assertSameDocuments($doc, $expected);
+    }
+
     public function testCenterAppliesClassToMenuItems()
     {
         $doc =<<<doc

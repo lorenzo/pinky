@@ -12,7 +12,7 @@ class GridTest extends TestCase
           <html>
             <head></head>
             <body>
-              <container></container>
+              <container class="extra"></container>
             </body>
           </html>
 doc;
@@ -21,7 +21,7 @@ doc;
           <html>
             <head></head>
             <body>
-              <table align="center" class="container">
+              <table align="center" class="extra container">
                 <tbody>
                   <tr><td></td></tr>
                 </tbody>
