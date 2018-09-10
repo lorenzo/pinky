@@ -6,41 +6,43 @@ use DOMDocument;
 use XSLTProcessor;
 
 /**
- * Returns the template processor instance
+ * Returns the template processors instances
  *
- * @return XSLTProcessor
+ * @return XSLTProcessor[]
  */
 function createInkyProcessor()
 {
-    $xslDoc = new DOMDocument();
-    $xslDoc->load(__DIR__ . "/inky.xsl");
+    $general = new DOMDocument();
+    $general->load(__DIR__ . "/inky.xsl");
+
+    $centering = new DOMDocument();
+    $centering->load(__DIR__ . "/inky-center.xsl");
 
     $security = XSL_SECPREF_READ_FILE | XSL_SECPREF_READ_NETWORK | XSL_SECPREF_DEFAULT;
-    $proc = new XSLTProcessor();
-    $proc->setSecurityPrefs($security);
-    $proc->importStylesheet($xslDoc);
+    $centerProcessor = new XSLTProcessor();
+    $centerProcessor->setSecurityPrefs($security);
+    $centerProcessor->importStylesheet($centering);
 
-    return $proc;
+    $generalProcessor = new XSLTProcessor();
+    $generalProcessor->setSecurityPrefs($security);
+    $generalProcessor->importStylesheet($general);
+
+    return [$centerProcessor, $generalProcessor];
 }
 
 /**
  * Processes the provided document using the passed XSLTProcessor instance.
  *
- * @param XSLTProcessor $proc A pre-configured processor to apply to the document
+ * @param XSLTProcessor[] $proc A pre-configured list of processors to apply to the document
  * @param DOMDocument $doc The document to be processed
  * @return DOMDocument
  */
-function transformWithProcessor(XSLTProcessor $proc, DOMDocument $doc)
+function transformWithProcessor(array $processors, DOMDocument $doc)
 {
-    $doc = $proc->transformToDoc($doc);
-
-    // With current logic, only menu tags can be left unprocessed the first pass
-    // Check if there are any left before doing a second pass
-    if ($doc->getElementsByTagName('menu')->length === 0) {
-        return $doc;
+    foreach ($processors as $processor) {
+        $doc = $processor->transformToDoc($doc);
     }
-
-    return $proc->transformToDoc($doc);
+    return $doc;
 }
 
 /**
