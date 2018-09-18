@@ -319,9 +319,9 @@ doc;
         <callout class="primary">Callout</callout>
 doc;
         $expected =<<<doc
-        <table class="primary callout">
+        <table class="callout">
             <tr>
-              <th class="callout-inner">Callout</th>
+              <th class="callout-inner primary">Callout</th>
               <th class="expander"></th>
             </tr>
         </table>
