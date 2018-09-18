@@ -164,20 +164,10 @@
     </xsl:template>
 
     <xsl:template match="//callout">
-        <table class="">
+        <table class="callout">
             <xsl:copy-of select="@*[name()!='class']"/>
             <tr>
-                <th class="callout-inner"><xsl:apply-templates /></th>
-                <th class="expander"></th>
-            </tr>
-        </table>
-    </xsl:template>
-
-    <xsl:template match="//callout">
-        <table class="{normalize-space(concat(@class, ' callout'))}">
-            <xsl:copy-of select="@*[name()!='class']"/>
-            <tr>
-                <th class="callout-inner"><xsl:apply-templates /></th>
+                <th class="{normalize-space(concat('callout-inner ', @class))}"><xsl:apply-templates /></th>
                 <th class="expander"></th>
             </tr>
         </table>
