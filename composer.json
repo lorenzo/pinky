@@ -15,7 +15,8 @@
     },
     "require": {
         "php": ">=5.6.0",
-        "ext-xsl": "*"
+        "ext-xsl": "*",
+        "ext-intl": "*",
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7"
