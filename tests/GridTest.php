@@ -62,16 +62,26 @@ doc;
 
     public function testCreateSingleColumnHasPositionClasses()
     {
-        $doc = '<columns large="12" small="12">One</columns>';
+        $doc = <<<doc
+        <row>
+            <columns large="12" small="12">One</columns>
+        </row>
+doc;
         $expected =<<<doc
-        <th class="small-12 large-12 first last columns">
-            <table>
-              <tr>
-                <th>One</th>
-                <th class="expander"></th>
-              </tr>
-            </table>
-        </th>
+        <table class="row">
+            <tbody>
+                <tr>
+                    <th class="small-12 large-12 first last columns">
+                        <table>
+                            <tr>
+                                <th>One</th>
+                                <th class="expander"></th>
+                            </tr>
+                        </table>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
 doc;
         $this->assertSameDocuments($doc, $expected);
     }
@@ -125,24 +135,32 @@ doc;
     public function testCreateTwoColumns()
     {
         $doc =<<<doc
-        <columns large="6" small="12">One</columns>
-        <columns large="6" small="12">Two</columns>
+        <row>
+            <columns large="6" small="12">One</columns>
+            <columns large="6" small="12">Two</columns>
+        </row>
 doc;
         $expected =<<<doc
-        <th class="small-12 large-6 first columns">
-            <table>
-              <tr>
-                <th>One</th>
-              </tr>
-            </table>
-          </th>
-          <th class="small-12 large-6 last columns">
-            <table>
-              <tr>
-                <th>Two</th>
-              </tr>
-            </table>
-        </th>
+        <table class="row">
+            <tbody>
+                <tr>
+                    <th class="small-12 large-6 first columns">
+                        <table>
+                        <tr>
+                            <th>One</th>
+                        </tr>
+                        </table>
+                    </th>
+                    <th class="small-12 large-6 last columns">
+                        <table>
+                        <tr>
+                            <th>Two</th>
+                        </tr>
+                        </table>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
 doc;
         $this->assertSameDocuments($doc, $expected);
     }
@@ -150,32 +168,40 @@ doc;
     public function testCreateThreeColumns()
     {
         $doc =<<<doc
-        <columns large="4" small="12">One</columns>
-        <columns large="4" small="12">Two</columns>
-        <columns large="4" small="12">Three</columns>
+        <row>
+            <columns large="4" small="12">One</columns>
+            <columns large="4" small="12">Two</columns>
+            <columns large="4" small="12">Three</columns>
+        </row>
 doc;
         $expected =<<<doc
-        <th class="small-12 large-4 first columns">
-            <table>
-              <tr>
-                <th>One</th>
-              </tr>
-            </table>
-          </th>
-          <th class="small-12 large-4 columns">
-            <table>
-              <tr>
-                <th>Two</th>
-              </tr>
-            </table>
-          </th>
-          <th class="small-12 large-4 last columns">
-            <table>
-              <tr>
-                <th>Three</th>
-              </tr>
-            </table>
-      </th>
+        <table class="row">
+            <tbody>
+                <tr>
+                    <th class="small-12 large-4 first columns">
+                        <table>
+                        <tr>
+                            <th>One</th>
+                        </tr>
+                        </table>
+                    </th>
+                    <th class="small-12 large-4 columns">
+                        <table>
+                        <tr>
+                            <th>Two</th>
+                        </tr>
+                        </table>
+                    </th>
+                    <th class="small-12 large-4 last columns">
+                        <table>
+                        <tr>
+                            <th>Three</th>
+                        </tr>
+                        </table>
+                </th>
+            </tr>
+        </tbody>
+    </table>
 doc;
         $this->assertSameDocuments($doc, $expected);
     }
