@@ -1,0 +1,39 @@
+name: CI
+
+on:
+    push:
+    pull_request:
+
+jobs:
+    check_composer:
+        name: Check composer.json
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: shivammathur/setup-php@v2
+              with:
+                  coverage: none
+                  php-version: '8.0'
+            - run: composer validate --strict --no-check-lock
+
+    tests:
+        name: "Tests on PHP ${{ matrix.php }}"
+        runs-on: ubuntu-latest
+
+        strategy:
+            fail-fast: false
+            matrix:
+                php: [ '5.6', '7.1', '7.2', '7.3', '7.4' ]
+
+        steps:
+            -   uses: actions/checkout@v2
+            -   uses: shivammathur/setup-php@v2
+                with:
+                    coverage: "none"
+                    php-version: "${{ matrix.php }}"
+
+            -   name: Install dependencies
+                run: composer update --ansi --no-progress --prefer-dist --no-interaction
+
+            -   name: Run tests
+                run: vendor/bin/phpunit -v --colors=always
