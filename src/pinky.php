@@ -33,7 +33,7 @@ function createInkyProcessor()
 /**
  * Processes the provided document using the passed XSLTProcessor instance.
  *
- * @param XSLTProcessor[] $proc A pre-configured list of processors to apply to the document
+ * @param XSLTProcessor[] $processors A pre-configured list of processors to apply to the document
  * @param DOMDocument $doc The document to be processed
  * @return DOMDocument
  */
@@ -73,7 +73,7 @@ function transformFile($filePath)
  * Returns a DOMDocument after replacing all the relevant tags from the
  * Inky templating language in the provided string
  *
- * @param string $xml The documen to process
+ * @param string $xml The document to process
  * @return DOMDocument
  */
 function transformString($xml)
@@ -82,7 +82,7 @@ function transformString($xml)
 }
 
 /**
- * Returns a DOMDocument after parsing the contents of the spedified file
+ * Returns a DOMDocument after parsing the contents of the specified file
  *
  * @param string $filePath The file to parse
  * @return DOMDocument
@@ -93,7 +93,7 @@ function loadTemplateFile($filePath)
 }
 
 /**
- * Returns a DOMDocument after parsing the contents of the spedified string
+ * Returns a DOMDocument after parsing the contents of the specified string
  *
  * @param string $html The string to parse
  * @return DOMDocument
@@ -111,8 +111,8 @@ function loadTemplateString($html)
 /**
  * Yields each of the transformed files as a DOMDocument
  *
- * @param array $files List of file paths to process
- * @return Traversable
+ * @param string[] $files List of file paths to process
+ * @return \Traversable
  */
 function transformManyFiles($files)
 {
@@ -125,8 +125,8 @@ function transformManyFiles($files)
 /**
  * Yields each of the transformed strings as a DOMDocument
  *
- * @param array $files List of xml strings to process
- * @return Traversable
+ * @param string[] $xmls List of xml strings to process
+ * @return \Traversable
  */
 function transformManyStrings($xmls)
 {
@@ -139,8 +139,8 @@ function transformManyStrings($xmls)
 /**
  * Yields each of the transformed DOMDocument objects
  *
- * @param array List of DOMDocument objects to process
- * @return Traversable
+ * @param DOMDocument[] $docs List of DOMDocument objects to process
+ * @return \Traversable
  */
 function transformManyDocs($docs)
 {
