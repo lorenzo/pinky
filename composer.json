@@ -15,6 +15,8 @@
     },
     "require": {
         "php": ">=5.6.0",
+        "ext-dom": "*",
+        "ext-libxml": "*",
         "ext-xsl": "*"
     },
     "require-dev": {
