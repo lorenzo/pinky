@@ -18,7 +18,7 @@ function createInkyProcessor()
     $centering = new DOMDocument();
     $centering->load(__DIR__ . "/inky-center.xsl");
 
-    $security = XSL_SECPREF_READ_FILE | XSL_SECPREF_READ_NETWORK | XSL_SECPREF_DEFAULT;
+    $security = \XSL_SECPREF_READ_FILE | \XSL_SECPREF_READ_NETWORK | \XSL_SECPREF_DEFAULT;
     $centerProcessor = new XSLTProcessor();
     $centerProcessor->setSecurityPrefs($security);
     $centerProcessor->importStylesheet($centering);
