@@ -55,6 +55,7 @@
         <th class="{normalize-space(concat('small-', $smallSize, ' large-', $largeSize, ' ',  $first, ' ', $last, ' ', 'columns', ' ', @class))}">
             <xsl:copy-of select="@*[name()!='class' and name()!='large' and name()!='small' and name()!='no-expander']"/>
             <table>
+                <tbody>
                 <tr>
                     <th>
                         <xsl:apply-templates/>
@@ -65,6 +66,7 @@
                         </xsl:if>
                     </xsl:if>
                 </tr>
+                </tbody>
             </table>
         </th>
     </xsl:template>
