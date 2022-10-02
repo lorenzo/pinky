@@ -12,6 +12,16 @@ use XSLTProcessor;
  */
 function createInkyProcessor()
 {
+    /*
+     * Enable libxml extensions (such as DOM, XMLWriter and XMLReader) to load external entities.
+     * Used to prevent such type of warning:
+     * Warning: DOMDocument::load(): I/O warning : failed to load external entity "/path/to/vendor/lorenzo/pinky/src/inky.xsl"
+     * Deprecated since PHP 8.0
+     */
+    if (\PHP_VERSION_ID < 80000) {
+        libxml_disable_entity_loader(false);
+    }
+
     $general = new DOMDocument();
     $general->load(__DIR__ . "/inky.xsl");
 
