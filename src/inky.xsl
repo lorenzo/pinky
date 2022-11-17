@@ -104,7 +104,7 @@
 
     <xsl:template match="//button">
         <table class="{normalize-space(concat(@class, ' button'))}">
-            <xsl:copy-of select="@*[name()!='class' and name()!='href' and name()!='target']"/>
+            <xsl:copy-of select="@*[name()!='class' and name()!='href' and name()!='data-href' and name()!='target']"/>
             <tr>
                 <td>
                     <table>
@@ -116,6 +116,9 @@
                                             <a align="center" class="float-center">
                                                 <xsl:copy-of select="@target"/>
                                                 <xsl:copy-of select="@href"/>
+                                                <xsl:if test="@data-href">
+                                                    <xsl:attribute name="href"><xsl:value-of select="@data-href"/></xsl:attribute>
+                                                </xsl:if>
                                                 <xsl:apply-templates />
                                             </a>
                                         </center>
@@ -124,6 +127,9 @@
                                         <a>
                                             <xsl:copy-of select="@target"/>
                                             <xsl:copy-of select="@href"/>
+                                            <xsl:if test="@data-href">
+                                                <xsl:attribute name="href"><xsl:value-of select="@data-href"/></xsl:attribute>
+                                            </xsl:if>
                                             <xsl:apply-templates />
                                         </a>
                                     </xsl:otherwise>
