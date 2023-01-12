@@ -112,7 +112,7 @@ function loadTemplateString($html)
 {
     $document = new DOMDocument('1.0', 'UTF-8');
     $internalErrors = libxml_use_internal_errors(true);
-    $document->loadHTML(htmlspecialchars_decode(htmlentities($html)));
+    $document->loadHTML(mb_encode_numericentity($html, [0x80, 0x10FFFF, 0, 0x1FFFFF], 'UTF-8'));
     libxml_use_internal_errors($internalErrors);
     $document->formatOutput = true;
     return $document;
