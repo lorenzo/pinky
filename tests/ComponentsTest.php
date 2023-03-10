@@ -68,6 +68,11 @@ doc;
             <button href="http://zurb.com">Button</button>
         </center>
 doc;
+        $docWithDataHref =<<<doc
+        <center>
+            <button data-href="http://zurb.com">Button</button>
+        </center>
+doc;
         $expected =<<<doc
         <center>
             <table align="center" class="float-center button">
@@ -84,6 +89,7 @@ doc;
         </center>
 doc;
         $this->assertSameDocuments($doc, $expected);
+        $this->assertSameDocuments($docWithDataHref, $expected);
     }
 
     public function testCenterAppliesClassToMenuItems()
@@ -120,6 +126,9 @@ doc;
         $doc =<<<doc
         <button href="http://zurb.com">Button</button>
 doc;
+        $docWithDataHref =<<<doc
+        <button data-href="http://zurb.com">Button</button>
+doc;
         $expected =<<<doc
         <table class="button">
             <tr>
@@ -134,12 +143,16 @@ doc;
         </table>
 doc;
         $this->assertSameDocuments($doc, $expected);
+        $this->assertSameDocuments($docWithDataHref, $expected);
     }
 
     public function testCreateButtonWithTarget()
     {
         $doc =<<<doc
         <button href="http://zurb.com" target="_blank">Button</button>
+doc;
+        $docWithDataHref =<<<doc
+        <button data-href="http://zurb.com" target="_blank">Button</button>
 doc;
         $expected =<<<doc
         <table class="button">
@@ -155,6 +168,7 @@ doc;
         </table>
 doc;
         $this->assertSameDocuments($doc, $expected);
+        $this->assertSameDocuments($docWithDataHref, $expected);
     }
 
 
@@ -162,6 +176,9 @@ doc;
     {
         $doc =<<<doc
         <button class="small alert" href="http://zurb.com">Button</button>
+doc;
+        $docWithDataHref =<<<doc
+        <button class="small alert" data-href="http://zurb.com">Button</button>
 doc;
         $expected =<<<doc
         <table class="small alert button">
@@ -177,12 +194,16 @@ doc;
         </table>
 doc;
         $this->assertSameDocuments($doc, $expected);
+        $this->assertSameDocuments($docWithDataHref, $expected);
     }
 
     public function testCreateExpandedButton()
     {
         $doc =<<<doc
         <button class="expand" href="http://zurb.com">Button</button>
+doc;
+        $docWithDataHref =<<<doc
+        <button class="expand" data-href="http://zurb.com">Button</button>
 doc;
         $expected =<<<doc
         <table class="expand button">
@@ -201,6 +222,7 @@ doc;
         </table>
 doc;
         $this->assertSameDocuments($doc, $expected);
+        $this->assertSameDocuments($docWithDataHref, $expected);
     }
 
     public function testCreateMenuWithContent()
