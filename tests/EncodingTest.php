@@ -20,15 +20,15 @@ class EncodingTest extends TestCase
     {
         yield [
             '<html><body><p>ASCII only</p></body></html>',
-            'ASCII only',
+            '<p>ASCII only</p>',
         ];
         yield [
             '<html><body><p>Twoje zam&oacute;wienie oczekuje na wp&#322;at&#281; zadatku &#127475;&#127473;</p></body></html>',
-            'Twoje zamówienie oczekuje na wpłatę zadatku 🇳🇱',
+            '<p>Twoje zamówienie oczekuje na wpłatę zadatku 🇳🇱</p>',
         ];
         yield [
             '<html><body><p>&#1055;&#1088;&#1080;&#1074;&#1077;&#1090; &#1084;&#1080;&#1088;!</p></body></html>',
-            'Привет мир!',
+            '<p>Привет мир!</p>',
         ];
     }
 }
